@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE.md in the project root for license information.
+
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -13,16 +16,19 @@ namespace AzureSQL.ToDo
 {
     public static class PatchToDo
     {
+        // update an item from new data in body object
+        // receives a list in the body with the existing data in at first position, and updates in at second position
+        // uses output binding to update the row in ToDo table
         [FunctionName("PatchToDo")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "PatchFunction")] HttpRequest req,
             ILogger log,
             [Sql("dbo.ToDo", ConnectionStringSetting = "SqlConnectionString")] IAsyncCollector<ToDoItem> toDoItems)
         {
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             List<ToDoItem> incomingToDoItems = JsonConvert.DeserializeObject<List<ToDoItem>>(requestBody);
-            // existing at first position, new at second position
 
+            // existing at first position, new at second position
             ToDoItem toDoItem = incomingToDoItems[0];
             ToDoItem newToDoItem = incomingToDoItems[1];
 
@@ -42,8 +48,9 @@ namespace AzureSQL.ToDo
 
             await toDoItems.AddAsync(toDoItem);
             await toDoItems.FlushAsync();
+            List<ToDoItem> toDoItemList = new List<ToDoItem> { toDoItem };
 
-            return new OkObjectResult(toDoItem);
+            return new OkObjectResult(toDoItemList);
 
         }
     }

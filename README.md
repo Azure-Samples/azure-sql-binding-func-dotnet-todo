@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-This project implements the [Todo Backend API](http://www.todobackend.com/index.html) using Azure Functions (.NET) and Azure SQL.
+This project implements the [Todo Backend API](http://www.todobackend.com/index.html) using Azure Functions (.NET) and Azure SQL through HTTP triggers and Azure SQL input/output bindings.
 
 ## ToDo Backend
 
@@ -29,16 +29,21 @@ This project implements a ToDo endpoint with the following actions:
 
 This example uses 2 application settings to control either secret or deployment-specific information.  During local development, these values are stored in `local.settings.json` at the project root.
 
-* **Connection string to SQL database (General format)** "SqlConnectionString": "Server=tcp:SERVERNAME,PORT;Initial Catalog=DATABASENAME;Persist Security Info=False;User ID=USERNAME;Password=USERPASSWORD;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+* **Connection string to SQL database (General format)** "SqlConnectionString": "Server=tcp:SERVERNAME,PORT;Initial Catalog=DATABASENAME;Persist Security Info=False;User ID=USERNAME;Password=USERPASSWORD;"
 * **Primary endpoint URL** "ToDoUri": "http://localhost:7071/api/ToDo"
 
 
+### Testing
+Using the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension for VS Code, the [testing.http](testing.http) file provides example requests for the functionality.
+
+
+![Testing in VS Code](./images/testing.png)
 
 ## Demo/Validation
 
 The ToDo backend specification has an accompanying runner for tests that validate the functionality.  To run these tests on the demo endpoint, go to [http://todobackend.com/specs/index.html?https://azuresqltodo.azurewebsites.net/api/ToDo](http://todobackend.com/specs/index.html?https://azuresqltodo.azurewebsites.net/api/ToDo).
 
-The functions runtime and SQL database may have gone idle when you test the link, if you find tests fail retry in about 30 seconds.
+The functions runtime and SQL database may have gone idle when you test the link, if you find tests fail retry after a few seconds.
 
 ![Validation](./images/validation.png)
 

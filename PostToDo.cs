@@ -1,4 +1,8 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE.md in the project root for license information.
+
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -12,9 +16,11 @@ namespace AzureSQL.ToDo
 {
     public static class PostToDo
     {
+        // create a new ToDoItem from body object
+        // uses output binding to insert new item into ToDo table
         [FunctionName("PostToDo")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "PostFunction")] HttpRequest req,
             ILogger log,
             [Sql("dbo.ToDo", ConnectionStringSetting = "SqlConnectionString")] IAsyncCollector<ToDoItem> toDoItems)
         {
@@ -35,8 +41,9 @@ namespace AzureSQL.ToDo
 
             await toDoItems.AddAsync(toDoItem);
             await toDoItems.FlushAsync();
+            List<ToDoItem> toDoItemList = new List<ToDoItem> { toDoItem };
 
-            return new OkObjectResult(toDoItem);
+            return new OkObjectResult(toDoItemList);
         }
     }
 }
