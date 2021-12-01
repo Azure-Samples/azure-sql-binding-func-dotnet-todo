@@ -1,3 +1,22 @@
+---
+page_type: sample
+languages:
+- csharp
+- sql
+- tsql
+products:
+- azure-functions
+- azure-sql-database
+- sql-server
+- azure-sql-managed-instance
+- azure-sqlserver-vm
+- dotnet
+- dotnet-core
+name: ToDo API backend with Azure SQL bindings
+description: Implement the ToDo Backend in .NET with Azure SQL bindings for Azure Functions
+urlFragment: todo-backend-dotnet-azure-sql-bindings-azure-functions
+---
+
 # ToDo Backend Implementation in .NET with Azure SQL bindings for Azure Functions
 
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
