@@ -1,0 +1,37 @@
+// retrieves all todo items from database
+GET http://localhost:7071/api/ToDo?id= HTTP/1.1
+
+###
+// retrieves a specific todo item from database
+GET http://localhost:7071/api/ToDo?id=98230fc4-2ce7-4b1f-aad1-dabaf372b76f HTTP/1.1
+
+
+###
+// retrieves an invalid todo item from database
+GET http://localhost:7071/api/ToDo?id=gdfsgsf HTTP/1.1
+
+
+###
+// adds a new todo to the database
+POST http://localhost:7071/api/ToDo HTTP/1.1
+Content-Type: application/json
+
+{"title":"test this sample"}
+
+
+###
+// updates a specific todo item from database
+PATCH http://localhost:7071/api/ToDo?id=c7c1e654-5020-47d0-9125-255f12138b18 HTTP/1.1
+Content-Type: application/json
+
+{"title":"walk the dog"}
+
+###
+// deletes a specific todo item from database
+GET http://localhost:7071/api/ToDo?id=98230fc4-2ce7-4b1f-aad1-dabaf372b76f HTTP/1.1
+
+
+###
+// deletes all todo items from database
+DELETE http://localhost:7071/api/ToDo?id= HTTP/1.1
+
