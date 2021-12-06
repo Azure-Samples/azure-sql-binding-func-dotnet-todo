@@ -91,7 +91,7 @@ namespace AzureSQL.ToDo
 
                         // call patch endpoint with list of existing and new data
                         var patchResponse = await client.PostAsJsonAsync("PatchFunction"+queryParams, toDoPatchList);
-                        toDoResponseList = JsonConvert.DeserializeObject<List<ToDoItem>>(await patchResponse.Content.ReadAsStringAsync());
+                        toDoResponseList.Add(JsonConvert.DeserializeObject<ToDoItem>(await patchResponse.Content.ReadAsStringAsync()));
                         return new OkObjectResult(toDoResponseList[0]);
                         
                     case "DELETE":

@@ -48,9 +48,8 @@ namespace AzureSQL.ToDo
 
             await toDoItems.AddAsync(toDoItem);
             await toDoItems.FlushAsync();
-            List<ToDoItem> toDoItemList = new List<ToDoItem> { toDoItem };
 
-            return new OkObjectResult(toDoItemList);
+            return new OkObjectResult(toDoItem);
 
         }
     }
