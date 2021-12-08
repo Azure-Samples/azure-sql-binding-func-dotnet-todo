@@ -1,0 +1,9 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "SqlConnectionString": "Server={SERVERNAME};Initial Catalog={DATABASENAME};Persist Security Info=False;User ID={USERNAME};Password={PASSWORD};",
+    "ToDoUri": "http://localhost:7071/api/ToDo"
+  }
+}
