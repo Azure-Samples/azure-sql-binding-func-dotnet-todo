@@ -1,17 +1,17 @@
 CREATE TABLE dbo.ToDo (
-    Id uniqueidentifier primary key,
-    [order] int null,
-    title nvarchar(200) not null,
-    [url] nvarchar(200) not null,
-    completed bit not null
+    [Id] UNIQUEIDENTIFIER PRIMARY KEY,
+    [order] INT NULL,
+    [title] NVARCHAR(200) NOT NULL,
+    [url] NVARCHAR(200) NOT NULL,
+    [completed] BIT NOT NULL
 );
 GO
 
 
 CREATE PROCEDURE [dbo].[DeleteToDo]
-    @Id nvarchar(100)
+    @Id NVARCHAR(100)
 AS
-    DECLARE @UID UNIQUEIDENTIFIER = TRY_CAST(@ID AS uniqueidentifier)
+    DECLARE @UID UNIQUEIDENTIFIER = TRY_CAST(@ID AS UNIQUEIDENTIFIER)
     IF @UId IS NOT NULL AND @Id != ''
     BEGIN
         DELETE FROM dbo.ToDo WHERE Id = @UID
@@ -21,5 +21,5 @@ AS
         DELETE FROM dbo.ToDo WHERE @ID = ''
     END
 
-    SELECT Id, [order], title, url, completed FROM dbo.ToDo
+    SELECT [Id], [order], [title], [url], [completed] FROM dbo.ToDo
 GO
