@@ -5,7 +5,7 @@
     <RootNamespace>azure_sql_binding_func_dotnet_todo</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Sql" Version="0.1.304-preview" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Sql" Version="2.0.144" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.0.1" />
   </ItemGroup>
   <ItemGroup>

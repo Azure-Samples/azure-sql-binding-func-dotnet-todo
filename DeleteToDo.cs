@@ -20,8 +20,8 @@ namespace AzureSQL.ToDo
         public static IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "DeleteFunction")] HttpRequest req,
             ILogger log,
-            [Sql("DeleteToDo", CommandType = System.Data.CommandType.StoredProcedure, 
-                Parameters = "@Id={Query.id}", ConnectionStringSetting = "SqlConnectionString")] 
+            [Sql(commandText: "DeleteToDo", commandType: System.Data.CommandType.StoredProcedure, 
+                parameters: "@Id={Query.id}", connectionStringSetting: "SqlConnectionString")] 
                 IEnumerable<ToDoItem> toDoItems)
         {
             return new OkObjectResult(toDoItems);

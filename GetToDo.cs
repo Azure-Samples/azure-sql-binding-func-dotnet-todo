@@ -21,7 +21,7 @@ namespace AzureSQL.ToDo
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "GetFunction")] HttpRequest req,
             ILogger log,
-            [Sql("if @Id = '' select Id, [order], title, url, completed from dbo.ToDo else select Id, [order], title, url, completed from dbo.ToDo where @Id = Id", CommandType = System.Data.CommandType.Text, Parameters = "@Id={Query.id}", ConnectionStringSetting = "SqlConnectionString")] IAsyncEnumerable<ToDoItem> toDos)
+            [Sql(commandText: "if @Id = '' select Id, [order], title, url, completed from dbo.ToDo else select Id, [order], title, url, completed from dbo.ToDo where @Id = Id", connectionStringSetting: "SqlConnectionString", commandType: System.Data.CommandType.Text, parameters: "@Id={Query.id}")] IAsyncEnumerable<ToDoItem> toDos)
         {
             return new OkObjectResult(toDos);
         }
