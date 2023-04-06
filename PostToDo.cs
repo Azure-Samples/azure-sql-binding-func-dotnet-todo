@@ -22,7 +22,7 @@ namespace AzureSQL.ToDo
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "PostFunction")] HttpRequest req,
             ILogger log,
-            [Sql("dbo.ToDo", ConnectionStringSetting = "SqlConnectionString")] IAsyncCollector<ToDoItem> toDoItems)
+            [Sql(commandText: "dbo.ToDo", connectionStringSetting: "SqlConnectionString")] IAsyncCollector<ToDoItem> toDoItems)
         {
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             ToDoItem toDoItem = JsonConvert.DeserializeObject<ToDoItem>(requestBody);
