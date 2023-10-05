@@ -11,7 +11,6 @@ products:
 - azure-sql-managed-instance
 - azure-sqlserver-vm
 - dotnet
-- dotnet-core
 name: ToDo API backend with Azure SQL bindings
 description: Implement the ToDo Backend in .NET with Azure SQL bindings for Azure Functions
 urlFragment: todo-backend-dotnet-azure-sql-bindings-azure-functions
